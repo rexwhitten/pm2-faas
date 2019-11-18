@@ -5,6 +5,7 @@
   "scripts": {
     "stop-all": "pm2 stop all",
     "start": "pm2 start index.js",
+    "run-once": "pm2 start index.js --no-autorestart",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
   "repository": {
