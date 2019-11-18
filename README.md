@@ -4,3 +4,7 @@
 2. A way to manage adding/removing `function scripts`
 3. a tiny REST API to invoke functions `/api/function/<name>'
 4. running HTTP POST 'api/function/<name>' should run the `function` and the return the result.
+
+## Streams Example
+
+5. Streaming functions together.
