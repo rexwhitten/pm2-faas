@@ -7,24 +7,29 @@ import { Injectable } from '@nestjs/common';
 export class FunctionsService {
 
     listFunctions() {
-        fs.readdir('./dist/funcs', function(err, items) {
-            if (err) throw err;
-
-            return items;
+        return new Promise((res, rej) => {
+            fs.readdir('./dist/funcs', function(err, items) {
+                if (err) rej(err);
+    
+                res(items);
+            });
         });
     }
 
     createFunction(name: string, func: string) {
-        fs.access('./dist/funcs', function(err) {
-            if (err) {
-                fs.mkdir('./dist/funcs', function(err) {
-                    if (err) throw err;
+        return new Promise((res, rej) => {
+            fs.access('./dist/funcs', function(err) {
+                if (err) {
+                    fs.mkdir('./dist/funcs', function(err) {
+                        if (err) rej(err);
+                    });
+                }
+    
+                fs.writeFile(`./dist/funcs/${name}.js`, func, function(err) {
+                    if (err) rej(err);
                 });
-            }
-
-            fs.writeFile(`./dist/funcs/${name}.js`, func, function(err) {
-                if (err) throw err;
             });
+            res(`${name}.js created`);
         });
     }
 
