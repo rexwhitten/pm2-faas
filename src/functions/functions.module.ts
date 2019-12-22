@@ -4,6 +4,6 @@ import { FunctionsService } from './functions.service';
 
 @Module({
   controllers: [FunctionsController],
-  providers: [FunctionsService]
+  providers: [FunctionsService],
 })
 export class FunctionsModule {}
